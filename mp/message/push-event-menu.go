@@ -29,7 +29,8 @@ var ScanCodePushDemo = `<xml>
 <MsgType><![CDATA[event]]></MsgType>
 <Event><![CDATA[scancode_push]]></Event>
 <EventKey><![CDATA[6]]></EventKey>
-<ScanCodeInfo><ScanType><![CDATA[qrcode]]></ScanType>
+<ScanCodeInfo>
+<ScanType><![CDATA[qrcode]]></ScanType>
 <ScanResult><![CDATA[1]]></ScanResult>
 </ScanCodeInfo>
 </xml>`
@@ -42,7 +43,8 @@ var ScanCodeWaitMsgDemo = `<xml>
 <MsgType><![CDATA[event]]></MsgType>
 <Event><![CDATA[scancode_waitmsg]]></Event>
 <EventKey><![CDATA[6]]></EventKey>
-<ScanCodeInfo><ScanType><![CDATA[qrcode]]></ScanType>
+<ScanCodeInfo>
+<ScanType><![CDATA[qrcode]]></ScanType>
 <ScanResult><![CDATA[2]]></ScanResult>
 </ScanCodeInfo>
 </xml>`
@@ -55,7 +57,8 @@ var PicSysPhoto = `<xml>
 <MsgType><![CDATA[event]]></MsgType>
 <Event><![CDATA[pic_sysphoto]]></Event>
 <EventKey><![CDATA[6]]></EventKey>
-<SendPicsInfo><Count>1</Count>
+<SendPicsInfo>
+<Count>1</Count>
 <PicList>
 <item>
 <PicMd5Sum><![CDATA[1b5f7c23b5bf75682a53e7b6d163e185]]></PicMd5Sum>
@@ -72,7 +75,8 @@ var PicPhotoOrAlbumDemo = `<xml>
 <MsgType><![CDATA[event]]></MsgType>
 <Event><![CDATA[pic_photo_or_album]]></Event>
 <EventKey><![CDATA[6]]></EventKey>
-<SendPicsInfo><Count>1</Count>
+<SendPicsInfo>
+<Count>1</Count>
 <PicList>
 <item>
 <PicMd5Sum><![CDATA[5a75aaca956d97be686719218f275c6b]]></PicMd5Sum>
@@ -89,7 +93,8 @@ var PicWeixinDemo = `<xml>
 <MsgType><![CDATA[event]]></MsgType>
 <Event><![CDATA[pic_weixin]]></Event>
 <EventKey><![CDATA[6]]></EventKey>
-<SendPicsInfo><Count>1</Count>
+<SendPicsInfo>
+<Count>1</Count>
 <PicList>
 <item>
 <PicMd5Sum><![CDATA[5a75aaca956d97be686719218f275c6b]]></PicMd5Sum>
