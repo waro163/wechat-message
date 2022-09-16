@@ -1,5 +1,7 @@
 package message
 
+import "github.com/waro163/wechat-message/utils"
+
 // Voice 语音消息
 type Voice struct {
 	CommonMsg
@@ -13,5 +15,7 @@ type Voice struct {
 func NewVoice(mediaID string) *Voice {
 	voice := new(Voice)
 	voice.MediaID = CDATA(mediaID)
+	voice.SetMsgType(MsgTypeVoice)
+	voice.SetCreateTime(utils.GetCurrTS())
 	return voice
 }
