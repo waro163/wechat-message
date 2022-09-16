@@ -1,5 +1,7 @@
 package message
 
+import "github.com/waro163/wechat-message/utils"
+
 // Image 图片消息
 type Image struct {
 	CommonMsg
@@ -14,5 +16,7 @@ type Image struct {
 func NewImage(mediaID string) *Image {
 	image := new(Image)
 	image.MediaID = CDATA(mediaID)
+	image.SetMsgType(MsgTypeImage)
+	image.SetCreateTime(utils.GetCurrTS())
 	return image
 }
