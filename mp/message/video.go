@@ -1,5 +1,7 @@
 package message
 
+import "github.com/waro163/wechat-message/utils"
+
 // Video 视频消息
 type Video struct {
 	CommonMsg
@@ -17,5 +19,7 @@ func NewVideo(mediaID, title, description string) *Video {
 	video.Video.MediaID = CDATA(mediaID)
 	video.Video.Title = CDATA(title)
 	video.Video.Description = CDATA(description)
+	video.SetMsgType(MsgTypeVideo)
+	video.SetCreateTime(utils.GetCurrTS())
 	return video
 }
