@@ -1,5 +1,7 @@
 package message
 
+import "github.com/waro163/wechat-message/utils"
+
 // Music 音乐消息
 type Music struct {
 	CommonMsg
@@ -20,5 +22,7 @@ func NewMusic(title, description, musicURL, hQMusicURL, thumbMediaID string) *Mu
 	music.Music.Description = CDATA(description)
 	music.Music.MusicURL = CDATA(musicURL)
 	music.Music.ThumbMediaID = CDATA(thumbMediaID)
+	music.SetMsgType(MsgTypeMusic)
+	music.SetCreateTime(utils.GetCurrTS())
 	return music
 }
