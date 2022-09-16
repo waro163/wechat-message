@@ -1,5 +1,7 @@
 package message
 
+import "github.com/waro163/wechat-message/utils"
+
 // News 图文消息
 type News struct {
 	CommonMsg
@@ -13,6 +15,8 @@ func NewNews(articles []*Article) *News {
 	news := new(News)
 	news.ArticleCount = len(articles)
 	news.Articles = articles
+	news.SetMsgType(MsgTypeNews)
+	news.SetCreateTime(utils.GetCurrTS())
 	return news
 }
 
