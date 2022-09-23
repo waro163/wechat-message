@@ -8,14 +8,10 @@ import (
 	"github.com/waro163/wechat-message/mp"
 )
 
-type MsgHandler interface {
-	HandleMsg(mp.MixMessage) (interface{}, error)
-}
-
 type Server struct {
 	Token        string
 	SkipValidata bool
-	Handler      MsgHandler
+	Handler      func(mp.MixMessage) (interface{}, error)
 }
 
 func (s *Server) ServeHTTP(w http.ResponseWriter, req *http.Request) {
@@ -48,7 +44,7 @@ func (s *Server) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	}
 
 	//
-	msgResp, err := s.Handler.HandleMsg(eventMsg)
+	msgResp, err := s.Handler(eventMsg)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
