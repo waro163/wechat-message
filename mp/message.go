@@ -126,14 +126,14 @@ type MixMessage struct {
 	// Event EventType `xml:"Event"`
 	SubscribeMsgPopupEventList []SubscribeMsgPopupEvent `xml:"SubscribeMsgPopupEvent>List"` //subscribe_msg_popup_event
 
-	//  --------管理订阅--------
+	// --------管理订阅--------
 	// Event EventType `xml:"Event"`
 	SubscribeMsgChangeEvent struct {
 		TemplateID            string `xml:"TemplateId"`
 		SubscribeStatusString string `xml:"SubscribeStatusString"`
 	} `xml:"SubscribeMsgChangeEvent>List"` // subscribe_msg_change_event
 
-	//  -------- bizsend 接口发送--------
+	// --------bizsend接口发送--------
 	// Event EventType `xml:"Event"`
 	SubscribeMsgSentEvent struct {
 		TemplateID  string `xml:"TemplateId"`
@@ -142,7 +142,7 @@ type MixMessage struct {
 		ErrorStatus string `xml:"ErrorStatus"`
 	} `xml:"SubscribeMsgSentEvent>List"` // subscribe_msg_sent_event
 
-	// 发布能力
+	// --------发布能力--------
 	PublishEventInfo struct {
 		PublishID     int64  `xml:"publish_id"`
 		PublishStatus uint   `xml:"publish_status"`
@@ -157,7 +157,7 @@ type MixMessage struct {
 		FailIndex []uint `xml:"fail_idx"` //审核不通过字段
 	} `xml:"PublishEventInfo"` // PUBLISHJOBFINISH
 
-	// 群发消息
+	// --------群发消息--------
 	TotalCount           int `xml:"TotalCount"`
 	FilterCount          int `xml:"FilterCount"`
 	SentCount            int `xml:"SentCount"`
@@ -174,4 +174,6 @@ type MixMessage struct {
 			ArticleUrl string `xml:"ArticleUrl"`
 		} `xml:"ResultList>item"`
 	} `xml:"ArticleUrlResult"`
+
+	// --------卡券消息--------
 }
