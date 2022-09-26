@@ -16,6 +16,18 @@ type SubscribeMsgPopupEvent struct {
 	PopupScene            int    `xml:"PopupScene" json:"PopupScene,string"`
 }
 
+// MassJobResult 群发消息事件推送
+type MassJobResult struct {
+	ArticleIdx            int    `xml:"ArticleIdx"`
+	UserDeclareState      int32  `xml:"UserDeclareState"`
+	AuditState            int32  `xml:"AuditState"`
+	OriginalArticleUrl    string `xml:"OriginalArticleUrl"`
+	OriginalArticleType   int32  `xml:"OriginalArticleType"`
+	CanReprint            int32  `xml:"CanReprint"`
+	NeedReplaceContent    int32  `xml:"NeedReplaceContent"`
+	NeedShowReprintSource int32  `xml:"NeedShowReprintSource"`
+}
+
 // MixMessage 存放所有微信公众号发送过来的消息和事件
 type MixMessage struct {
 	msg.CommonMsg
@@ -93,4 +105,22 @@ type MixMessage struct {
 		} `xml:"article_detail"`
 		FailIndex []uint `xml:"fail_idx"` //审核不通过字段
 	} `xml:"PublishEventInfo"` // PUBLISHJOBFINISH
+
+	// 群发消息
+	TotalCount           int `xml:"TotalCount"`
+	FilterCount          int `xml:"FilterCount"`
+	SentCount            int `xml:"SentCount"`
+	ErrorCount           int `xml:"ErrorCount"`
+	CopyrightCheckResult struct {
+		Count      int             `xml:"Count"`
+		CheckState int             `xml:"CheckState"`
+		ResultList []MassJobResult `xml:"ResultList>item"`
+	} `xml:"CopyrightCheckResult"`
+	ArticleUrlResult struct {
+		Count      int `xml:"Count"`
+		ResultList []struct {
+			ArticleIdx int    `xml:"ArticleIdx"`
+			ArticleUrl string `xml:"ArticleUrl"`
+		} `xml:"ResultList>Item"`
+	} `xml:"ArticleUrlResult"`
 }
