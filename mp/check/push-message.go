@@ -1,4 +1,4 @@
-package message
+package check
 
 // 普通消息推送实例
 

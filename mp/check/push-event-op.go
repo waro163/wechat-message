@@ -1,4 +1,4 @@
-package message
+package check
 
 // 关注/取消关注事件
 var SubscribeDemo = `<xml>

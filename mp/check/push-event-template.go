@@ -1,4 +1,4 @@
-package message
+package check
 
 // 发送模版消息成功推送
 var SendTemplateMsgSucc = `<xml> 

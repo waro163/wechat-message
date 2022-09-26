@@ -1,4 +1,4 @@
-package message
+package check
 
 // 点击自定义菜单事件
 var CustomMenuDemo = `<xml>
