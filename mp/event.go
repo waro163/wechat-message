@@ -46,11 +46,6 @@ const (
 	// EventMassSendJobFinish 群发消息推送通知
 	EventMassSendJobFinish EventType = "MASSSENDJOBFINISH"
 
-	//
-
-	// EventWxaMediaCheck 异步校验图片/音频是否含有违法违规内容推送事件
-	EventWxaMediaCheck EventType = "wxa_media_check"
-
 	// --------订阅通知事件推送--------
 
 	// EventSubscribeMsgPopupEvent 订阅通知事件推送（图文场景）
@@ -64,4 +59,32 @@ const (
 
 	// EventPublishJobFinish 发布任务完成
 	EventPublishJobFinish EventType = "PUBLISHJOBFINISH"
+
+	// --------卡券事件推送--------
+	// 卡券通过审核
+	EventCardPassCheck EventType = "card_pass_check"
+	// 卡券未通过审核
+	EventCardNotPassCheck EventType = "card_not_pass_check"
+	// 用户领取卡券
+	EventUserGetCard EventType = "user_get_card"
+	// 用户转赠卡券
+	EventUserGiftCard EventType = "user_gifting_card"
+	// 用户删除卡券
+	EventUserDelCard EventType = "user_del_card"
+	// 用户核销卡券
+	EventUserConsumeCard EventType = "user_consume_card"
+	// 买单完成
+	EventUserPay EventType = "user_pay_from_pay_cell"
+	// 进入会员卡
+	EventUserViewCard EventType = "user_view_card"
+	// 卡券进入公众号会话
+	EventUserEntrySessionFromCard EventType = "user_enter_session_from_card"
+	// 会员卡内容更新
+	EventCardUpdate EventType = "update_member_card"
+	// 库存报警
+	EventCardSkuRemind EventType = "card_sku_remind"
+	// 券点流水详情变动
+	EventCardPayOrder EventType = "card_pay_order"
+	// 会员卡激活
+	EventSubmitCardUserInfo EventType = "submit_membercard_user_info"
 )
