@@ -4,6 +4,8 @@ package mp
 type EventType string
 
 const (
+	// --------基础事件推送--------
+
 	// EventSubscribe 订阅
 	EventSubscribe EventType = "subscribe"
 	// EventUnsubscribe 取消订阅
@@ -16,6 +18,9 @@ const (
 	EventClick EventType = "CLICK"
 	// EventView 点击菜单跳转链接时的事件推送
 	EventView EventType = "VIEW"
+
+	// --------自定义菜单事件推送--------
+
 	// EventScancodePush 扫码推事件的事件推送
 	EventScancodePush EventType = "scancode_push"
 	// EventScancodeWaitmsg 扫码推事件且弹出“消息接收中”提示框的事件推送
@@ -30,14 +35,33 @@ const (
 	EventLocationSelect EventType = "location_select"
 	// EventViewMiniprogram 点击菜单跳转小程序的事件推送
 	EventViewMiniprogram EventType = "view_miniprogram"
+
+	//  --------模版消息事件推送--------
+
 	// EventTemplateSendJobFinish 发送模板消息推送通知
 	EventTemplateSendJobFinish EventType = "TEMPLATESENDJOBFINISH"
+
+	// --------群发消息事件推送--------
+
 	// EventMassSendJobFinish 群发消息推送通知
 	EventMassSendJobFinish EventType = "MASSSENDJOBFINISH"
+
+	//
+
 	// EventWxaMediaCheck 异步校验图片/音频是否含有违法违规内容推送事件
 	EventWxaMediaCheck EventType = "wxa_media_check"
-	// EventSubscribeMsgPopupEvent 订阅通知事件推送
+
+	// --------订阅通知事件推送--------
+
+	// EventSubscribeMsgPopupEvent 订阅通知事件推送（图文场景）
 	EventSubscribeMsgPopupEvent EventType = "subscribe_msg_popup_event"
+	// EventSubscribeMsgChangeEvent 订阅通知修改事件
+	EventSubscribeMsgChangeEvent EventType = "subscribe_msg_change_event"
+	// EventSubscribeMsgSendEvent 订阅通知事件推送（bizsend接口发送）
+	EventSubscribeMsgSendEvent EventType = "subscribe_msg_sent_event"
+
+	// --------发布能力事件推送--------
+
 	// EventPublishJobFinish 发布任务完成
 	EventPublishJobFinish EventType = "PUBLISHJOBFINISH"
 )
