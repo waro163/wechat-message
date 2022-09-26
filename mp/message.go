@@ -78,4 +78,19 @@ type MixMessage struct {
 		ErrorCode   int32  `xml:"ErrorCode"`
 		ErrorStatus string `xml:"ErrorStatus"`
 	} `xml:"SubscribeMsgSentEvent>List"` // subscribe_msg_sent_event
+
+	// 发布能力
+	PublishEventInfo struct {
+		PublishID     int64  `xml:"publish_id"`
+		PublishStatus uint   `xml:"publish_status"`
+		ArticleID     string `xml:"article_id"`
+		ArticleDetail struct {
+			Count uint `xml:"count"`
+			Item  []struct {
+				Index      uint   `xml:"idx"`
+				ArticleURL string `xml:"article_url"`
+			} `xml:"item"`
+		} `xml:"article_detail"`
+		FailIndex []uint `xml:"fail_idx"` //审核不通过字段
+	} `xml:"PublishEventInfo"` // PUBLISHJOBFINISH
 }
