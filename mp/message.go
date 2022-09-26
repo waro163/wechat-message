@@ -121,6 +121,6 @@ type MixMessage struct {
 		ResultList []struct {
 			ArticleIdx int    `xml:"ArticleIdx"`
 			ArticleUrl string `xml:"ArticleUrl"`
-		} `xml:"ResultList>Item"`
+		} `xml:"ResultList>item"`
 	} `xml:"ArticleUrlResult"`
 }
