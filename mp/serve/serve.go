@@ -44,6 +44,7 @@ func (s *Server) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	}
 	if s.Handler == nil {
 		w.Write([]byte("success"))
+		return
 	}
 
 	// process business logic by your handle function
