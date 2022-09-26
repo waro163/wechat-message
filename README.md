@@ -7,6 +7,7 @@
 - [菜单事件推送](https://developers.weixin.qq.com/doc/offiaccount/Custom_Menus/Custom_Menu_Push_Events.html)
 - [订阅通知事件推送](https://developers.weixin.qq.com/doc/offiaccount/Subscription_Messages/api.html#%E4%BA%8B%E4%BB%B6%E6%8E%A8%E9%80%81)
 - [模版消息事件推送](https://developers.weixin.qq.com/doc/offiaccount/Message_Management/Template_Message_Interface.html#%E4%BA%8B%E4%BB%B6%E6%8E%A8%E9%80%81)
+- [发布能力事件推送](https://developers.weixin.qq.com/doc/offiaccount/Publish/Callback_on_finish.html)
 
 小程序事件推送主要来自于
 - [订阅消息事件推送](https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/subscribe-message.html)
