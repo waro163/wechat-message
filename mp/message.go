@@ -9,6 +9,13 @@ type EventPic struct {
 	PicMd5Sum string `xml:"PicMd5Sum"`
 }
 
+// SubscribeMsgPopupEvent 订阅通知事件推送的消息体
+type SubscribeMsgPopupEvent struct {
+	TemplateID            string `xml:"TemplateId" json:"TemplateId"`
+	SubscribeStatusString string `xml:"SubscribeStatusString" json:"SubscribeStatusString"`
+	PopupScene            int    `xml:"PopupScene" json:"PopupScene,string"`
+}
+
 // MixMessage 存放所有微信公众号发送过来的消息和事件
 type MixMessage struct {
 	msg.CommonMsg
@@ -57,4 +64,18 @@ type MixMessage struct {
 		Label     string  `xml:"Label"`
 		Poiname   string  `xml:"Poiname"`
 	} `xml:"SendLocationInfo"`
+
+	SubscribeMsgPopupEventList []SubscribeMsgPopupEvent `xml:"SubscribeMsgPopupEvent>List"` //subscribe_msg_popup_event
+
+	SubscribeMsgChangeEvent struct {
+		TemplateID            string `xml:"TemplateId"`
+		SubscribeStatusString string `xml:"SubscribeStatusString"`
+	} `xml:"SubscribeMsgChangeEvent>List"` // subscribe_msg_change_event
+
+	SubscribeMsgSentEvent struct {
+		TemplateID  string `xml:"TemplateId"`
+		MsgID       int64  `xml:"MsgID"`
+		ErrorCode   int32  `xml:"ErrorCode"`
+		ErrorStatus string `xml:"ErrorStatus"`
+	} `xml:"SubscribeMsgSentEvent>List"` // subscribe_msg_sent_event
 }
