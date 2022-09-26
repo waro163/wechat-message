@@ -42,13 +42,17 @@ func (s *Server) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
+	if s.Handler == nil {
+		w.Write([]byte("success"))
+	}
 
-	//
+	// process business logic by your handle function
 	msgResp, err := s.Handler(eventMsg)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
+	// generate whole xml format message to response
 	data, err := mp.ReplyMsg(eventMsg, msgResp)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
