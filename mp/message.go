@@ -98,7 +98,7 @@ type MixMessage struct {
 	// --------scan code push--------
 	// Event EventType `xml:"Event"`
 	// EventKey string `xml:"EventKey"
-	ScanCodeInfo struct {
+	ScanCodeInfo *struct {
 		ScanType   string `xml:"ScanType"`
 		ScanResult string `xml:"ScanResult"`
 	} `xml:"ScanCodeInfo"` //scan_push
@@ -106,7 +106,7 @@ type MixMessage struct {
 	// --------pic--------
 	// Event EventType `xml:"Event"`
 	// EventKey string `xml:"EventKey"
-	SendPicsInfo struct {
+	SendPicsInfo *struct {
 		Count   int32      `xml:"Count"`
 		PicList []EventPic `xml:"PicList>item"`
 	} `xml:"SendPicsInfo"`
@@ -114,7 +114,7 @@ type MixMessage struct {
 	// --------location select--------
 	// Event EventType `xml:"Event"`
 	// EventKey string `xml:"EventKey"
-	SendLocationInfo struct {
+	SendLocationInfo *struct {
 		LocationX float64 `xml:"Location_X"`
 		LocationY float64 `xml:"Location_Y"`
 		Scale     float64 `xml:"Scale"`
@@ -124,18 +124,18 @@ type MixMessage struct {
 
 	// --------订阅弹窗--------
 	// Event EventType `xml:"Event"`
-	SubscribeMsgPopupEventList []SubscribeMsgPopupEvent `xml:"SubscribeMsgPopupEvent>List"` //subscribe_msg_popup_event
+	SubscribeMsgPopupEventList *[]SubscribeMsgPopupEvent `xml:"SubscribeMsgPopupEvent>List"` //subscribe_msg_popup_event
 
 	// --------管理订阅--------
 	// Event EventType `xml:"Event"`
-	SubscribeMsgChangeEvent struct {
+	SubscribeMsgChangeEvent *struct {
 		TemplateID            string `xml:"TemplateId"`
 		SubscribeStatusString string `xml:"SubscribeStatusString"`
 	} `xml:"SubscribeMsgChangeEvent>List"` // subscribe_msg_change_event
 
 	// --------bizsend接口发送--------
 	// Event EventType `xml:"Event"`
-	SubscribeMsgSentEvent struct {
+	SubscribeMsgSentEvent *struct {
 		TemplateID  string `xml:"TemplateId"`
 		MsgID       int64  `xml:"MsgID"`
 		ErrorCode   int32  `xml:"ErrorCode"`
@@ -143,7 +143,7 @@ type MixMessage struct {
 	} `xml:"SubscribeMsgSentEvent>List"` // subscribe_msg_sent_event
 
 	// --------发布能力--------
-	PublishEventInfo struct {
+	PublishEventInfo *struct {
 		PublishID     int64  `xml:"publish_id"`
 		PublishStatus uint   `xml:"publish_status"`
 		ArticleID     string `xml:"article_id"`
@@ -162,12 +162,12 @@ type MixMessage struct {
 	FilterCount          int `xml:"FilterCount"`
 	SentCount            int `xml:"SentCount"`
 	ErrorCount           int `xml:"ErrorCount"`
-	CopyrightCheckResult struct {
+	CopyrightCheckResult *struct {
 		Count      int             `xml:"Count"`
 		CheckState int             `xml:"CheckState"`
 		ResultList []MassJobResult `xml:"ResultList>item"`
 	} `xml:"CopyrightCheckResult"`
-	ArticleUrlResult struct {
+	ArticleUrlResult *struct {
 		Count      int `xml:"Count"`
 		ResultList []struct {
 			ArticleIdx int    `xml:"ArticleIdx"`
