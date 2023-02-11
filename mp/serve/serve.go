@@ -4,6 +4,7 @@ import (
 	"encoding/xml"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"net/http"
 
 	"github.com/waro163/wechat-message/mp"
@@ -12,6 +13,7 @@ import (
 type Server struct {
 	Token        string
 	SkipValidata bool
+	LogMsg       bool
 	Handler      func(mp.MixMessage) (interface{}, error)
 }
 
@@ -34,6 +36,9 @@ func (s *Server) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	var eventMsg mp.MixMessage
 	rawXMLMsgBytes, err := ioutil.ReadAll(req.Body)
 	defer req.Body.Close()
+	if s.LogMsg {
+		log.Printf("request body %s", string(rawXMLMsgBytes))
+	}
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte(fmt.Sprintf(`{"errmsg":%s}`, err)))
