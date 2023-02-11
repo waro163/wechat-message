@@ -2,6 +2,7 @@ package serve
 
 import (
 	"encoding/xml"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 
@@ -35,11 +36,13 @@ func (s *Server) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	defer req.Body.Close()
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte(fmt.Sprintf(`{"errmsg":%s}`, err)))
 		return
 	}
 	err = xml.Unmarshal(rawXMLMsgBytes, &eventMsg)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte(fmt.Sprintf(`{"errmsg":%s}`, err)))
 		return
 	}
 	if s.Handler == nil {
@@ -51,12 +54,14 @@ func (s *Server) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	msgResp, err := s.Handler(eventMsg)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte(fmt.Sprintf(`{"errmsg":%s}`, err)))
 		return
 	}
 	// generate whole xml format message to response
 	data, err := mp.ReplyMsg(eventMsg, msgResp)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte(fmt.Sprintf(`{"errmsg":%s}`, err)))
 		return
 	}
 	w.Write(data)
