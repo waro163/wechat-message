@@ -58,9 +58,7 @@ func (s *Server) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	// process business logic by your handle function
 	_, err = s.Handler(eventMsg)
 	if err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
-		w.Write([]byte(fmt.Sprintf(`{"errmsg":%s}`, err)))
-		return
+		log.Printf("handle wechat mini event message error: %s", err)
 	}
 	w.WriteHeader(http.StatusOK)
 	w.Write([]byte("success"))

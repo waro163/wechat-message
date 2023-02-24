@@ -65,8 +65,7 @@ func (s *Server) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	// generate whole xml format message to response
 	data, err := mp.ReplyMsg(eventMsg, msgResp)
 	if err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
-		w.Write([]byte(fmt.Sprintf(`{"errmsg":%s}`, err)))
+		w.Write([]byte("success"))
 		return
 	}
 	w.Write(data)
