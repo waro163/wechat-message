@@ -32,7 +32,7 @@ func (s *Server) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	//handle wechat event, just for not SAFT mode!!!
+	//handle wechat event, just for not SAFE mode!!!
 	var eventMsg mp.MixMessage
 	rawXMLMsgBytes, err := ioutil.ReadAll(req.Body)
 	defer req.Body.Close()
