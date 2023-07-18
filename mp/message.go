@@ -177,3 +177,19 @@ type MixMessage struct {
 
 	// --------卡券消息--------
 }
+
+// EncryptedXMLMsg 安全模式下的请求消息体
+type EncryptedXMLMsg struct {
+	XMLName      struct{} `xml:"xml" json:"-"`
+	ToUserName   string   `xml:"ToUserName" json:"ToUserName"`
+	EncryptedMsg string   `xml:"Encrypt"    json:"Encrypt"`
+}
+
+// EncryptedRespXMLMsg 安全模式下的被动回复消息体
+type EncryptedRespXMLMsg struct {
+	XMLName      struct{} `xml:"xml"`
+	Encrypt      msg.CDATA
+	MsgSignature msg.CDATA
+	TimeStamp    string
+	Nonce        msg.CDATA
+}
