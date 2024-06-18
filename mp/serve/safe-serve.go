@@ -10,6 +10,9 @@ import (
 )
 
 /*
+doc: https://developers.weixin.qq.com/doc/offiaccount/Message_Management/Message_encryption_and_decryption_instructions.html
+dev test tool: https://developers.weixin.qq.com/apiExplorer?type=messagePush
+
 api: path/api?signature=7f4c9e837603ad0814f9ede695e44c8bf82399b9
 			&timestamp=1689578973&nonce=1553478527
 			&encrypt_type=aes
@@ -24,7 +27,7 @@ body:
 signature:
 	signature=sha1(sort(Token, timestamp, nonce))
 msg_signature:
-	msg_signature=sha1(sort(Token, timestamp, nonce, msg_encrypt))
+	msg_signature=sha1(sort(Token, timestamp, nonce, Encrypt))
 
 encrypt:
 	AESKey = Base64_Decode(EncodingAESKey + "=");
@@ -33,7 +36,7 @@ encrypt:
 
 decrypt:
 	AESKey = Base64_Decode(EncodingAESKey + "=");
-	TmpMsg = Base64_Decode(msg_encrypt)
+	TmpMsg = Base64_Decode(Encrypt)
 	FullStr = AES_Decrypt(TmpMsg, AESKey);  FullStr 如前所述由4部分组成（random, msg_len, msg, appid）
 	验证尾部的appid 是否正确（可选）
 	去掉FullStr头部16字节的random、4字节的msg_len、和尾部的appid，即得到明文内容
