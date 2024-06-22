@@ -3,7 +3,7 @@ package serve
 import (
 	"encoding/xml"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"log"
 	"net/http"
 
@@ -34,7 +34,7 @@ func (s *Server) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 
 	//handle wechat event, just for not SAFE mode!!!
 	var eventMsg mp.MixMessage
-	rawXMLMsgBytes, err := ioutil.ReadAll(req.Body)
+	rawXMLMsgBytes, err := io.ReadAll(req.Body)
 	defer req.Body.Close()
 	if s.LogMsg {
 		log.Printf("request body %s", string(rawXMLMsgBytes))
