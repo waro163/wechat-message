@@ -48,7 +48,7 @@ type SafeServer struct {
 	aesKey       []byte
 	SkipValidata bool
 	LogMsg       bool
-	Handler      func(mp.MixMessage) (interface{}, error)
+	Handler      IMessageHandler
 }
 
 func (s *SafeServer) SetAESKey(key string) error {
@@ -118,7 +118,7 @@ func (s *SafeServer) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	}
 
 	// process business logic by your handle function
-	msgResp, err := s.Handler(mixMsg)
+	msgResp, err := s.Handler.HandleMsg(mixMsg)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte(fmt.Sprintf(`{"errmsg":%s}`, err)))

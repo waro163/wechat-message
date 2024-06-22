@@ -14,7 +14,7 @@ type Server struct {
 	Token        string
 	SkipValidata bool
 	LogMsg       bool
-	Handler      func(mp.MixMessage) (interface{}, error)
+	Handler      IMessageHandler
 }
 
 func (s *Server) ServeHTTP(w http.ResponseWriter, req *http.Request) {
@@ -56,7 +56,7 @@ func (s *Server) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	}
 
 	// process business logic by your handle function
-	msgResp, err := s.Handler(eventMsg)
+	msgResp, err := s.Handler.HandleMsg(eventMsg)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte(fmt.Sprintf(`{"errmsg":%s}`, err)))
