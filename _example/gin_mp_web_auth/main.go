@@ -11,18 +11,25 @@ import (
 )
 
 var (
-	appId     = ""
-	appSecret = ""
+	appId     = "your_app_id"
+	appSecret = "your_app_secret"
 )
 
 func main() {
 	r := gin.Default()
-
-	r.Any("api/wechat/auth", WechatAuth)
+	r.Any("/api/wechat/callback_bind", BindCallback)
+	r.Any("/api/wechat/auth", WechatAuth)
 	r.Run(":8080")
 }
 
-// step1. https://open.weixin.qq.com/connect/oauth2/authorize?appid=[APPID]&redirect_uri=[localhost:8080/api/wechat/auth]&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect
+func BindCallback(c *gin.Context) {
+	echostr := c.Query("echostr")
+	log.Printf("echostr: %s\n", echostr)
+	c.String(http.StatusOK, echostr)
+}
+
+// step0. 注意，测试号管理中，在接口权限表 - 网页账号 处修改该域名，并非JS接口安全域名处修改，切记
+// step1. https://open.weixin.qq.com/connect/oauth2/authorize?appid=[your_app_id]&redirect_uri=[your_domain]/api/wechat/auth&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect
 func WechatAuth(c *gin.Context) {
 	authCode := c.Query("code")
 	if authCode == "" {
@@ -34,7 +41,7 @@ func WechatAuth(c *gin.Context) {
 	resp, err := http.DefaultClient.Get(url)
 	if err != nil {
 		log.Printf("get token error, %s", err)
-		c.Status(http.StatusOK)
+		c.JSON(http.StatusOK, gin.H{"msg": err.Error()})
 		return
 	}
 	body, _ := io.ReadAll(resp.Body)
@@ -42,11 +49,11 @@ func WechatAuth(c *gin.Context) {
 	var tokenResp TokenResp
 	if err := json.Unmarshal(body, &tokenResp); err != nil {
 		log.Printf("json Unmarshal error, %s", &body)
-		c.Status(http.StatusOK)
+		c.JSON(http.StatusOK, gin.H{"msg": err.Error()})
 		return
 	}
 	log.Printf("user open_id: %s", tokenResp.Openid)
-	c.Status(http.StatusOK)
+	c.JSON(http.StatusOK, gin.H{"open_id": tokenResp.Openid})
 }
 
 type TokenResp struct {
