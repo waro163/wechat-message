@@ -17,14 +17,14 @@ var (
 
 func main() {
 	r := gin.Default()
-	r.Any("/MP_verify_xxxx.txt", BindWebAuthHost)
+	r.Any("/:mpVerifyFileName", BindWebAuthHost)
 	r.Any("/api/wechat/callback_bind", BindCallback)
 	r.Any("/api/wechat/auth", WechatAuth)
 	r.Run(":8080")
 }
 
 func BindWebAuthHost(c *gin.Context) {
-	c.String(http.StatusOK, "aaaa")
+	c.String(http.StatusOK, "update your mp_verify file content here")
 }
 
 func BindCallback(c *gin.Context) {
